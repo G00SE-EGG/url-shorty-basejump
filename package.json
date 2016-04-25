@@ -2,7 +2,7 @@
   "name": "clementinejs-fcc",
   "version": "1.0.1",
   "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
-  "main": "server.js",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
@@ -19,7 +19,7 @@
     "boilerplate"
   ],
   "scripts": {
-  "start": "node server.js"
+  "start": "node app.js"
   },
   "author": "Blake Johnston",
   "license": "MIT",
