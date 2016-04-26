@@ -5,7 +5,7 @@ function Link(org, short)
   this.print = function()
   {
   	console.log(JSON.stringify(this.org, this.short));
-  }
+  };
 }
 
 /* this function checks to see if the provided link is valid. If so, return true
