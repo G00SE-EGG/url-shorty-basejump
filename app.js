@@ -1,5 +1,4 @@
 var express = require("express");
-
 var app = express();
 //creates a view and configures express to use it by default
 var handlebars = require("express3-handlebars").create({defaultLayout:'main'});
@@ -19,8 +18,9 @@ app.get('/', function(req, res){
 });//view engine returns type of 'text/html' and status of 200 by default
 
 //route for the about page
-app.get('/about', function(req, res) {
-   res.render('about');
+app.get('/new*', function(req, res) {
+    console.log(req.url.replace(/\/[a-z]+\//, ''));
+   res.render('new');
 });
 
 /*
