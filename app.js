@@ -19,8 +19,9 @@ app.get('/', function(req, res){
 
 //route for the about page
 app.get('/new*', function(req, res) {
-    console.log(req.url.replace(/\/[a-z]+\//, ''));
-   res.render('new');
+    var foo = req.url.replace(/\/[a-z]+\//, '');
+    console.log(foo);
+   res.render('new', {url : foo});
 });
 
 /*
