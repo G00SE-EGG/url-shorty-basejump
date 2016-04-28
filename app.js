@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var validUrl = require("./url_validator");
 //creates a view and configures express to use it by default
 var handlebars = require("express3-handlebars").create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
@@ -20,8 +21,18 @@ app.get('/', function(req, res){
 //route for the about page
 app.get('/new*', function(req, res) {
     var foo = req.url.replace(/\/[a-z]+\//, '');
-    console.log(foo);
-   res.render('new', {url : foo});
+    //console.log(foo);
+    if(validUrl.isValidLink(foo))
+    {
+        res.render('new', {url : '<a href = ' + foo + 'target=_blank>link</a>'});
+        console.log('Link is valid');
+    }
+    else
+    {
+        res.render('new', {url : 'Error'});
+        console.log('link is invalid');
+    }
+   
 });
 
 /*

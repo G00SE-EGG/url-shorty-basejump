@@ -5,7 +5,7 @@ function Link(org, short)
   this.print = function()
   {
   	console.log(JSON.stringify(this.org, this.short));
-  };
+  }
 }
 
 /* this function checks to see if the provided link is valid. If so, return true
@@ -26,6 +26,8 @@ console.log(validUrl.test(link));
 }
 }
 
+
+
 function shorten(link)
 {
 	
@@ -44,7 +46,7 @@ function shorten(link)
   }
 }
 
-function main()
+/*function main()
 {
 var str = '';
 	$('#btn').on('click', function(){
@@ -53,4 +55,20 @@ var str = '';
   });
 }
 
-main();
+main();*/
+
+exports.isValidLink = function(link)
+{
+    //var validUrl = /[https?]{4,5}[:\/\/]{3}[a-zA-Z]+\.(com|org|net|gov|it)\/?/;
+    var validUrl = /[https?]{4,5}[:\/\/www]{6}\.[a-zA-Z]+\.(com|org|net|gov|it)\/?/;
+if(validUrl.test(link))
+{
+console.log(validUrl.test(link));
+	return true;
+}
+else
+{
+console.log(validUrl.test(link));
+	return false;
+}
+};
