@@ -1,12 +1,18 @@
 var express = require("express");
 var app = express();
 var validUrl = require("./url_validator");
+var Link = require("./Link.model");
+var mongoose = require("mongoose");
 //creates a view and configures express to use it by default
 var handlebars = require("express3-handlebars").create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
+
+var db = 'mongodb://localhost/Links';
+
+mongoose.connect(db);
 
 //app.get() is the method that allows you to add routes
 //it takes a path(defines the route) and a function as parameters
@@ -21,16 +27,24 @@ app.get('/', function(req, res){
 //route for the about page
 app.get('/new*', function(req, res) {
     var foo = req.url.replace(/\/[a-z]+\//, '');
+    var testLink;// = new Link(foo);
     //console.log(foo);
     if(validUrl.isValidLink(foo))
     {
         //res.render('new', {url : '<a href = ' + foo + 'target=_blank>link</a>'});
-        console.log('Link is valid');
+        testLink = new Link({originalURL : foo});
+        testLink.save(function(err, testLink){
+            if(err)console.error(err);
+            //console.dir(testLink);
+        });
+        res.send(testLink);
+        console.log('Link is valid', testLink.originalURL);
     }
     else
     {
         //res.render('new', {url : 'Error'});
-        console.log('link is invalid');
+        res.send('Please enter in a valid link');
+        console.log('link is invalid', testLink.originalURL);
     }
    
 });

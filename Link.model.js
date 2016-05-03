@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
-var Schema = new mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var LinkSchema = new Schema({
+    originalURL : String,
+    shortenedURL : String,
+    longKey : String,
+    shortKey : String
     
 });
 
