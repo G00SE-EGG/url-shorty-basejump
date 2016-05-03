@@ -24,12 +24,12 @@ app.get('/new*', function(req, res) {
     //console.log(foo);
     if(validUrl.isValidLink(foo))
     {
-        res.render('new', {url : '<a href = ' + foo + 'target=_blank>link</a>'});
+        //res.render('new', {url : '<a href = ' + foo + 'target=_blank>link</a>'});
         console.log('Link is valid');
     }
     else
     {
-        res.render('new', {url : 'Error'});
+        //res.render('new', {url : 'Error'});
         console.log('link is invalid');
     }
    
