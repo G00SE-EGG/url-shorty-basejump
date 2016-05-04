@@ -60,7 +60,7 @@ main();*/
 exports.isValidLink = function(link)
 {
     //var validUrl = /[https?]{4,5}[:\/\/]{3}[a-zA-Z]+\.(com|org|net|gov|it)\/?/;
-    var validUrl = /[https?]{4,5}[:\/\/www]{6}\.[a-zA-Z]+\.(com|org|net|gov|it)\/?/;
+    var validUrl = /[https?]{4,5}[:\/\/www]{6}\.[a-zA-Z0-9]+\.(com|org|net|gov|it)\/?/;
 if(validUrl.test(link))
 {
 console.log(validUrl.test(link));
