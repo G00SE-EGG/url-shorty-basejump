@@ -57,7 +57,7 @@ app.get('/new*', function(req, res) {
 });
 
 app.get('/*', function(req, res) {
-    res.redirect(302, global.testLink.originalURL);
+    res.redirect(301, global.testLink.originalURL);
 });
 /*
 app.use is a method by which express adds middleware
