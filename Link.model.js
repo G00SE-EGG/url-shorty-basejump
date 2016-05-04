@@ -5,7 +5,7 @@ var LinkSchema = new Schema({
     originalURL : String,
     shortenedURL : {
         type : String,
-        default : 'http://www/shorty.com/'
+        default : 'https://url-shortyy.herokuapp.com/'
     },
     longKey : String,
     shortKey : String

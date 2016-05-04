@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var validUrl = require("./url_validator");
 var Link = require("./Link.model");
+var Shorten = require("./shorten");
 var mongoose = require("mongoose");
 //creates a view and configures express to use it by default
 var handlebars = require("express3-handlebars").create({defaultLayout:'main'});
@@ -27,28 +28,35 @@ app.get('/', function(req, res){
 //route for the about page
 app.get('/new*', function(req, res) {
     var foo = req.url.replace(/\/[a-z]+\//, '');
-    var testLink;// = new Link(foo);
+    global.testLink ;// = new Link(foo);
+    var output = {};
     //console.log(foo);
     if(validUrl.isValidLink(foo))
     {
         //res.render('new', {url : '<a href = ' + foo + 'target=_blank>link</a>'});
-        testLink = new Link({originalURL : foo});
-        testLink.save(function(err, testLink){
+        global.testLink = new Link({originalURL : foo});
+        global.testLink.save(function(err, testLink){
             if(err)console.error(err);
             //console.dir(testLink);
         });
-        res.send(testLink);
-        console.log('Link is valid', testLink.originalURL);
+        output.originalURL = foo;
+        output.shortUrl = Shorten.shorten(global.testLink);
+        res.send(output);
+        console.log('Link is valid', global.testLink.originalURL);
     }
     else
     {
         //res.render('new', {url : 'Error'});
-        res.send('Please enter in a valid link');
-        console.log('link is invalid', testLink.originalURL);
+        output.error = "Please enter in a valid URL!";
+        res.send(output);
+        console.log('link is invalid', global.testLink.originalURL);
     }
    
 });
 
+app.get('/*', function(req, res) {
+    res.redirect(302, global.testLink.originalURL);
+});
 /*
 app.use is a method by which express adds middleware
 (catch all handler for anything that didn't get matched by supplied routes)
