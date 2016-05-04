@@ -11,9 +11,11 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
-var db = 'mongodb://localhost/Links';
-
-mongoose.connect(db);
+//var db = 'mongodb://localhost/Links';
+var db = 'mongodb://heroku_3kszbd44:ofqsuahjm6lpnbrk5jvcku6e7f@ds013192.mlab.com:13192/heroku_3kszbd44';
+mongoose.connect(db, function(err, db){
+    if(err)console.error(err);
+});
 
 //app.get() is the method that allows you to add routes
 //it takes a path(defines the route) and a function as parameters
