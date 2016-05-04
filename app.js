@@ -21,12 +21,12 @@ mongoose.connect(db);
 //parameters passed are request/repsonse objects
 //for now, we're returning plain-text with status code of 200 (express default)
 //route for the home page
-app.get('/', function(req, res){
+app.get('https://url-shortyy.herokuapp.com/', function(req, res){
    res.render('home');
 });//view engine returns type of 'text/html' and status of 200 by default
 
 //route for the about page
-app.get('/new*', function(req, res) {
+app.get('https://url-shortyy.herokuapp.com/new*', function(req, res) {
     var foo = req.url.replace(/\/[a-z]+\//, '');
     global.testLink ;// = new Link(foo);
     var output = {};
@@ -54,7 +54,7 @@ app.get('/new*', function(req, res) {
    
 });
 
-app.get('/*', function(req, res) {
+app.get('https://url-shortyy.herokuapp.com/*', function(req, res) {
     res.redirect(302, global.testLink.originalURL);
 });
 /*
